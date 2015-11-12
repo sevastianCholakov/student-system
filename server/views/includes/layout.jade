@@ -5,12 +5,22 @@ html
         link(rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.css")
         link(rel="stylesheet" href="node_modules/toastr/build/toastr.css")
         link(rel="stylesheet" href="css/site.css")
-        body
+        body(ng-app='app')
             header
-            nav header
-            h1 hi from layout
+                nav
+                    ul(class='nav nav-tabs')
+                       li
+                        a Home
+                       li
+                        a Profile
+
 
             block main-content
+
             footer
-            nav footer
+            nav
+                ul(class='nav nav-tabs')
+                    li
+                        a &copy Footer
+
             include scripts

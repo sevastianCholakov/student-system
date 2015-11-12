@@ -26,10 +26,13 @@ app.use(stylus.middleware({
 // set client file location
 app.use(express.static(path.join(__dirname, '../client')));
 
+app.get('/partials/:partialName', function (req, res) {
+    res.render('partials/' + req.params.partialName)
+});
 // set default route
 app.get('*', function (req, res) {
     res.render('index');
-})
+});
 
 app.listen(port);
 console.log("Server running on port " + port);
