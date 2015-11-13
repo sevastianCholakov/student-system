@@ -1,0 +1,33 @@
+{
+  "name": "student-system",
+  "version": "0.0.1",
+  "description": "MEAN STACK APP",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "engines": {
+    "node": "4.2.x",
+    "npm": "2.14.x"
+  },
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "angular": "^1.4.7",
+    "angular-resource": "^1.4.7",
+    "angular-route": "^1.4.7",
+    "bootstrap": "^3.3.5",
+    "jquery": "^2.1.4",
+    "toastr": "^2.1.2",
+    "body-parser": "^1.14.1",
+    "cookie-parser": "^1.4.0",
+    "express": "^4.13.3",
+    "express-session": "^1.12.1",
+    "gulp": "^3.9.0",
+    "gulp-nodemon": "^2.0.4",
+    "jade": "^1.11.0",
+    "mongoose": "^4.2.5",
+    "passport": "^0.3.2",
+    "stylus": "^0.52.4"
+  }
+}
