@@ -5,7 +5,7 @@ var bodyParser = require('body-parser');
 var env = process.env.NODE_ENV || 'development';
 var path = require('path');
 var app = express();
-var port = '3030';
+var port = process.env.PORT || '3030';
 var messageFromDataBase;
 
 // set view engine and location
@@ -29,8 +29,7 @@ app.use(stylus.middleware({
 app.use(express.static(path.join(__dirname, '../client')));
 
 
-
-mongoose.connect('mongodb://localhost/student-system');
+mongoose.connect('mongodb://admin:admin1@ds047524.mongolab.com:47524/student-system');
 var db = mongoose.connection;
 
 db.once('open', function(err){
