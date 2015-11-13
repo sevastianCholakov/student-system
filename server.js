@@ -14,12 +14,9 @@ app.use(bodyParser.urlencoded({
 }));
 app.use(bodyParser.json());
 
-
-// set client file location
-app.use(express.static(path.join(__dirname, '/client')));
-//app.use(express.static(__dirname ));
-console.log(path.join(__dirname, '/client'));
-
+// set file location
+//app.use(express.static(path.join(__dirname, '/client')));
+app.use(express.static(__dirname));
 mongoose.connect('mongodb://admin:admin1@ds047524.mongolab.com:47524/student-system');
 var db = mongoose.connection;
 
