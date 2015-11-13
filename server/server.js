@@ -1,3 +1,4 @@
+require('./server');
 var express = require('express');
 var stylus = require('stylus');
 var mongoose = require('mongoose');
