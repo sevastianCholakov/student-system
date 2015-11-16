@@ -11,6 +11,3 @@ app.config(function($routeProvider, $locationProvider){
     $routeProvider.otherwise({redirectTo: '/'});
 });
 
-app.controller('MainCtrl', function($scope){
-    $scope.hello = 'Hi from angular !';
-});

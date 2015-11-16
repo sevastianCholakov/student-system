@@ -6,7 +6,6 @@ var env = process.env.NODE_ENV || 'development';
 var path = require('path');
 var app = express();
 var port = process.env.PORT || '3030';
-var messageFromDataBase;
 
 // set body parser
 app.use(bodyParser.urlencoded({
@@ -32,24 +31,6 @@ db.on('error', function(err){
    console.log('Database error: ' + err);
 });
 
-var messageSchema = mongoose.Schema({
-    message: String
-});
-
-var Message = mongoose.model('Message', messageSchema);
-
-Message.remove({}).exec(function(err){
-   if(err) {
-       console.log('Messages could not be cleared' + err);
-   }
-    console.log('messages deleted');
-    Message.create({message: 'Hi from mongoose'})
-        .then(function(model){
-            messageFromDataBase = model.message;
-            console.log(model.message)
-        });
-});
-
 // set view engine and location
 app.set('view engine', 'jade');
 app.set('views', __dirname + '/server/views');
@@ -68,7 +49,7 @@ app.get('/partials/:partialName', function (req, res) {
 
 // set default route
 app.get('*', function (req, res) {
-    res.render('index', {message: messageFromDataBase});
+    res.render('index');
 });
 
 

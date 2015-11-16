@@ -2,3 +2,12 @@
     .jumbotron
         h1 Student System
         h2 Student System
+    .row
+        .col-md-6
+            .panel.panel-info
+                .panel-heading.text-center Featured
+                .panel-body(ng-include="'partials/featured-courses'")
+        .col-md-6
+            .panel.panel-info
+                .panel-heading.text-center New
+                .panel-body(ng-include="'partials/new-courses'")
