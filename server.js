@@ -43,8 +43,8 @@ app.use(stylus.middleware({
     }
 }));
 
-app.get('/partials/:partialName', function (req, res) {
-    res.render('partials/' + req.params.partialName)
+app.get('/partials/:partialArea/:partialName', function (req, res) {
+    res.render('partials/' + req.params.partialArea + '/' + req.params.partialName)
 });
 
 // set default route

@@ -4,7 +4,7 @@ app.config(function($routeProvider, $locationProvider){
    //$locationProvider.html5mode(true);
     $routeProvider
         .when('/', {
-        templateUrl: '/partials/home',
+        templateUrl: '/partials/main/home',
         controller: 'MainCtrl'
     });
 
