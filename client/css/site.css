@@ -1,4 +1,12 @@
 body {
   font: 12px Helvetica, Arial, sans-serif;
-  color: #00f;
+  padding-top: 50px;
+}
+footer {
+  padding-left: 100px;
+  padding-right: 100px;
+}
+footer p {
+  border-top: 1px solid #000;
+  padding-top: 10px;
 }
