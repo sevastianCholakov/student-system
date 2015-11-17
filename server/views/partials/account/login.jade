@@ -4,3 +4,5 @@
             input.form-control(type="text", placeholder="username", ng-model="user.username")
             input.form-control(type="password", placeholder="password", ng-model="user.password")
             button.btn.btn-primary(ng-click="login(user)") Login
+
+    div(ng-show="identity.isAuthenticated()") {{identity.currentUser.userName}}
