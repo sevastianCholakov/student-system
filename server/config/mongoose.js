@@ -1,6 +1,7 @@
 var mongoose = require('mongoose'),
     passport = require('passport'),
-    localPassport = require('passport-local');
+    localPassport = require('passport-local'),
+    crypto = require('crypto');
 
 module.exports = function (config) {
     mongoose.connect(config.db);
@@ -22,8 +23,8 @@ module.exports = function (config) {
         userName: String,
         firstName: String,
         lastName: String,
-       // salt: String,
-       // hashPass: String
+        salt: String,
+        hashPass: String
     });
 
     var User = mongoose.model('User', userSchema);
@@ -33,8 +34,16 @@ module.exports = function (config) {
             return
         }
         if (collection.length === 0){
-            User.create({userName: 'userNameTest', firstName: 'firstNameTest', lastName: 'lastNameTest', password: 'userNameTest'});
-            User.create({userName: 'userNameTest1', firstName: 'firstNameTest1', lastName: 'lastNameTest1', password: 'userNameTest'});
+            var salt;
+            var hashedPassword;
+
+            salt = generateSalt();
+            hashedPassword = generateHashedPassword(salt, '123');
+            User.create({userName: 'test', firstName: 'testa', lastName: 'testaa', salt: salt, hashPass:hashedPassword});
+
+            salt = generateSalt();
+            hashedPassword = generateHashedPassword(salt, '1234');
+            User.create({userName: 'test1', firstName: 'testa1', lastName: 'testaa1', salt: salt, hashPass:hashedPassword});
             console.log('users added to db');
         }
     })
@@ -73,3 +82,12 @@ module.exports = function (config) {
         })
     })
 };
+
+function generateSalt () {
+    return crypto.randomBytes(128).toString('base64');
+}
+
+function generateHashedPassword (salt, password) {
+    var hmac = crypto.createHmac('sha1', salt);
+    return hmac.update(password).digest('hex');
+}
