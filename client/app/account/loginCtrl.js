@@ -1,4 +1,4 @@
-app.controller('LoginCtrl', function ($scope, notifier, identity, auth) {
+app.controller('LoginCtrl', function ($scope, $location, notifier, identity, auth) {
     $scope.identity = identity;
 
     $scope.login = function (user) {
@@ -10,4 +10,11 @@ app.controller('LoginCtrl', function ($scope, notifier, identity, auth) {
             }
         });
     };
-})
+
+    $scope.signOut = function () {
+        auth.logOut().then(function () {
+            notifier.success('Logout successfull');
+            $location.path('/');
+        });
+    };
+});

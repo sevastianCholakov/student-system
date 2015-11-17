@@ -27,6 +27,16 @@ module.exports = function (config) {
         hashPass: String
     });
 
+    userSchema.method({
+        authenticate: function (password) {
+            if (generateHashedPassword(this.salt, password) === this.hashPass) {
+                return true;
+            } else {
+                return false;
+            }
+        }
+    });
+
     var User = mongoose.model('User', userSchema);
     User.find({}).exec(function (err, collection) {
         if(err){

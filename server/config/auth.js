@@ -11,4 +11,9 @@ module.exports = {
         });
     });
     auth(req, res, next);
-}};
+    },
+    logout: function(req, res, next) {
+        req.logout();
+        res.end();
+    }
+};

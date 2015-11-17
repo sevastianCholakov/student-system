@@ -12,4 +12,5 @@ module.exports = function (app) {
     });
 
     app.post('/login', auth.login);
+    app.post('/logout', auth.logout);
 };
