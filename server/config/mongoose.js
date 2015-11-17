@@ -33,9 +33,8 @@ module.exports = function (config) {
             return
         }
         if (collection.length === 0){
-            User.create({userName: 'userNameTest', firstName: 'firstNameTest', lastName: 'lastNameTest'});
-            User.create({userName: 'userNameTest1', firstName: 'firstNameTest1', lastName: 'lastNameTest1'});
-            User.create({userName: 'userNameTest22', firstName: 'firstNameTest22', lastName: 'lastNameTest2'});
+            User.create({userName: 'userNameTest', firstName: 'firstNameTest', lastName: 'lastNameTest', password: 'userNameTest'});
+            User.create({userName: 'userNameTest1', firstName: 'firstNameTest1', lastName: 'lastNameTest1', password: 'userNameTest'});
             console.log('users added to db');
         }
     })
