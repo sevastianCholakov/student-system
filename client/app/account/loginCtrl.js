@@ -1,11 +1,13 @@
-app.controller('LoginCtrl', function ($scope, $http, notifier) {
+app.controller('LoginCtrl', function ($scope, notifier, identity, auth) {
+    $scope.identity = identity;
+
     $scope.login = function (user) {
-        $http.post('/login', user).success(function (resp) {
-            if (resp.success) {
+        auth.login(user).then(function (success) {
+            if (success) {
                 notifier.success('Login successful');
             } else {
                 notifier.error('Login failed');
             }
         });
-    }
-});
+    };
+})
