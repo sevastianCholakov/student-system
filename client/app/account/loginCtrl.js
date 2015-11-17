@@ -14,6 +14,8 @@ app.controller('LoginCtrl', function ($scope, $location, notifier, identity, aut
     $scope.signOut = function () {
         auth.logOut().then(function () {
             notifier.success('Logout successfull');
+            $scope.user.username = '';
+            $scope.user.password = '';
             $location.path('/');
         });
     };

@@ -14,6 +14,7 @@ module.exports = function (app, config) {
     app.use(session({
         secret: 'cookie_secret',
         name: 'cookie_name',
+        //store: 'sessionStore', // connect-mongo session store
         proxy: true,
         resave: true,
         saveUninitialized: true

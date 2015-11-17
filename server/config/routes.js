@@ -6,11 +6,11 @@ module.exports = function (app) {
         res.render('partials/' + req.params.partialArea + '/' + req.params.partialName)
     });
 
-    // set default route
-    app.get('*', function (req, res) {
-        res.render('index');
-    });
-
     app.post('/login', auth.login);
     app.post('/logout', auth.logout);
+
+    // set default route
+    app.get('*', function(req, res) {
+        res.render('index', {currentUser: req.user});
+    });
 };
