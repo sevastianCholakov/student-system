@@ -1,10 +1,12 @@
-app.factory('auth', function ($http, $q, identity) {
+app.factory('auth', function ($http, $q, identity, userResource) {
     return {
       login: function (user) {
           var deferred = $q.defer();
           $http.post('/login', user).success(function (resp) {
               if (resp.success) {
-                  identity.currentUser = resp.user;
+                  var user = new userResource();
+                  angular.extend(user, resp.user);
+                  identity.currentUser = user;
                   deferred.resolve(true);
               } else {
                   deferred.resolve(false);

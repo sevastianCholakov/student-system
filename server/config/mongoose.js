@@ -22,7 +22,8 @@ module.exports = function (config) {
         firstName: String,
         lastName: String,
         salt: String,
-        hashPass: String
+        hashPass: String,
+        roles: [String]
     });
 
     userSchema.method({
@@ -41,28 +42,35 @@ module.exports = function (config) {
             console.log('cannot find users' + err);
             return
         }
+
+        //User.remove({}, function () {
+        //
+        //});
+
         if (collection.length === 0) {
             var salt;
             var hashedPassword;
 
             salt = generateSalt();
-            hashedPassword = generateHashedPassword(salt, '123');
+            hashedPassword = generateHashedPassword(salt, 'admin');
             User.create({
-                userName: 'test',
-                firstName: 'testa',
-                lastName: 'testaa',
+                userName: 'admin',
+                firstName: 'admin',
+                lastName: 'adminov',
                 salt: salt,
-                hashPass: hashedPassword
+                hashPass: hashedPassword,
+                roles: ['admin']
             });
 
             salt = generateSalt();
-            hashedPassword = generateHashedPassword(salt, '1234');
+            hashedPassword = generateHashedPassword(salt, 'user');
             User.create({
-                userName: 'test1',
-                firstName: 'testa1',
-                lastName: 'testaa1',
+                userName: 'user',
+                firstName: 'user',
+                lastName: 'userov',
                 salt: salt,
-                hashPass: hashedPassword
+                hashPass: hashedPassword,
+                roles: ['standard']
             });
             console.log('users added to db');
         }
