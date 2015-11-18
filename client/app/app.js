@@ -6,6 +6,9 @@ app.config(function($routeProvider, $locationProvider){
         .when('/', {
         templateUrl: '/partials/main/home',
         controller: 'MainCtrl'
+    }).when('/admin/users', {
+        templateUrl: '/partials/account/users-list',
+        controller: 'UserListCtrl'
     });
 
     $routeProvider.otherwise({redirectTo: '/'});
