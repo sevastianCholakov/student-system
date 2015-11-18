@@ -5,6 +5,9 @@ body {
 .navbar-right .navbar-form input {
   margin-right: 10px;
 }
+.navbar-right .navbar-form a.btn {
+  margin-left: 10px;
+}
 footer {
   padding-left: 100px;
   padding-right: 100px;

@@ -19,7 +19,11 @@ app.config(function($routeProvider, $locationProvider){
         templateUrl: '/partials/account/users-list',
         controller: 'UserListCtrl',
         resolve: routeRoleCheck.admin
-    });
+    }).when('/signup', {
+            templateUrl: '/partials/account/signup',
+            controller: 'SignUpCtrl',
+        }
+    );
 
     $routeProvider.otherwise({redirectTo: '/'});
 });
