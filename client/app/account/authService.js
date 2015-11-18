@@ -20,9 +20,18 @@ app.factory('auth', function ($http, $q, identity, userResource) {
 
           $http.post('/logout').success(function(){
               identity.currentUser = undefined;
+
               deferred.resolve();
           });
+
           return deferred.promise;
       },
+        isAuthorizedForRole: function (role) {
+            if (identity.isAuthorizedForRole(role)) {
+                return true;
+            } else {
+                return $q.reject('Not Authorized');
+            }
+        }
     };
 });
