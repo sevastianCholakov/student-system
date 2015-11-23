@@ -5,12 +5,11 @@ var express = require('express'),
     session = require('express-session'),
     passport = require('passport');
 
-module.exports = function (app, config) {
-    // set view engine and location
+module.exports = function(app, config) {
     app.set('view engine', 'jade');
     app.set('views', config.rootPath + '/server/views');
-
     app.use(cookieParser());
+    app.use(bodyParser.json());
     app.use(session({
         secret: 'cookie_secret',
         name: 'cookie_name',
@@ -20,20 +19,15 @@ module.exports = function (app, config) {
         saveUninitialized: true
     }));
 
-    // set body parser
-    app.use(bodyParser.urlencoded({
-        extended: true
-    }));
-    app.use(bodyParser.json());
-
-    // config stylus
-    app.use(stylus.middleware({
-        src: config.rootPath + '/client',
-        compile: function(str, path){
-            return stylus(str).set('filename', path);
+    app.use(stylus.middleware(
+        {
+            src: config.rootPath + '/public',
+            compile: function(str, path) {
+                return stylus(str).set('filename', path);
+            }
         }
-    }));
+    ));
     app.use(passport.initialize());
     app.use(passport.session());
-    app.use(express.static(config.rootPath));
-};
+    app.use(express.static(config.rootPath + '/public'));
+}
