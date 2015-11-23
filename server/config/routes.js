@@ -1,13 +1,14 @@
 var auth = require('./auth'),
-    controllers = require('../controllers');
+    userCtrl = require('../controllers/usersController'),
+    courseCtrl = require('../controllers/coursesController');
 
 module.exports = function(app) {
-    app.get('/api/users', auth.isInRole('admin'), controllers.users.getAllUsers);
-    app.post('/api/users', controllers.users.createUser);
-    app.put('/api/users', auth.isAuthenticated, controllers.users.updateUser);
+    app.get('/api/users', auth.isInRole('admin'), userCtrl.getAllUsers);
+    app.post('/api/users', userCtrl.createUser);
+    app.put('/api/users', auth.isAuthenticated, userCtrl.updateUser);
 
-    app.get('/api/courses', controllers.courses.getAllCourses);
-    app.get('/api/courses/:id', controllers.courses.getCourseById);
+    app.get('/api/courses', courseCtrl.getAllCourses);
+    app.get('/api/courses/:id', courseCtrl.getCourseById);
 
     app.get('/partials/:partialArea/:partialName', function(req, res) {
         res.render('../../public/app/' + req.params.partialArea + '/' + req.params.partialName)
